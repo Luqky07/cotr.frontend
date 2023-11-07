@@ -1,0 +1,26 @@
+.select-container{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    margin-bottom: 2%;
+}
+
+select{
+    padding: .5%;
+    font-size: 1em;
+    margin-right: 2%;
+    background-color: var(--primary-color);
+    border: 3px solid var(--secundary-color);
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+option:nth-child(1):hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+option:nth-child(2):hover {
+    background-color: var(--primary-color);
+    color: white;
+  }

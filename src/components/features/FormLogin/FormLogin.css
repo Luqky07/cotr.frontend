@@ -1,0 +1,45 @@
+.form-login{
+    display: flexbox;
+    justify-content: center;
+    width: 70%;
+}
+
+label{
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.3rem;
+}
+
+.inputGroup input{
+    margin-bottom: 5%;
+    width: 100%;
+    background: none;
+    color: var(--primary-color);
+    border: 1px solid var(--secundary-color);
+    padding: 2%;
+    border-radius: 5px;
+    outline: none;
+    font-size: .85rem;
+}
+
+.inputGroup input:focus{
+    font-size: 1.3rem;
+    border: 2px solid var(--secundary-color);
+}
+
+input[type="submit"]{
+    background-color: var(--primary-color);
+    border: 3px solid var(--secundary-color);
+    color: #ffffff;
+    border-radius: 3px;
+    font-size: 1.7rem;
+    padding: 2%;
+    font-weight: bold;
+}
+
+.submit{
+    margin-top: 5%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
