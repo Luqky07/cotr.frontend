@@ -26,13 +26,13 @@ export default function ThemeProvider({children}){
         const themeLink = document.getElementById('theme-stylesheet');
 
         if (themeLink) {
-            themeLink.href =  `../../../../public/themes/${searchedTheme.file}`;
+            themeLink.href =  `../../../../themes/${searchedTheme.file}`;
         } else {
             const link = document.createElement('link');
             link.id = 'theme-stylesheet';
             link.rel = 'stylesheet';
             link.type = 'text/css';
-            link.href = `../../../../public/themes/${searchedTheme.file}`;
+            link.href = `../../../../themes/${searchedTheme.file}`;
             document.head.appendChild(link);
         }
         localStorage.setItem('theme', JSON.stringify(newTheme))
