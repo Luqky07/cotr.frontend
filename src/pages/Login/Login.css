@@ -1,37 +1,63 @@
-.loginPage{
+.login-page{
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.pageContainer{
+.page-container{    
+    font-size: 1rem;
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 30px;
+    margin: 0px;
+    border-radius: 7px;
+    box-shadow: 0 0 10px 0px rgb(53, 53, 53);
     background-color: #363535;
-    width: 40%;
-    border-radius: 20px;
-    padding: 5%;
 }
 
 .link{
-    margin-left: 2%;
+    margin-left: 5px;
     text-decoration: none;
     color: var(--extra-color);
 }
 
-.formContainer{
+.form-container{
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-h1{
-    width: 100%;
-    text-align: center;
-    font-size: 3rem;
-    color: var(--primary-color);
+.login-title{
+  text-align: left;
+  padding: 0em;
+  margin-top: 10px;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 1.2em;
 }
 
-h3{
-    text-align: center;
-    font-size: 1.7rem;
+.signup-title{
+    text-align: left;
+    padding: 0em;
+    margin-top: 10px;
     color: var(--secundary-color);
+    font-weight: 500;
+    font-size: 1em;
+}
+
+@media (min-width: 769px) {
+    .page-container {
+        margin-top: 3%;
+        min-width: 380px;
+        max-width: 520px;
+    }
+  }
+
+@media (max-width: 768px){
+    .page-container{
+        margin-top: 10%;
+        max-width: 70%;
+        max-height: 100%;
+    }
 }

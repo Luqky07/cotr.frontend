@@ -13,12 +13,12 @@ export default function Login(){
     if(auth.isAuth) return <Navigate to={'/home'}/>
 
     return (
-        <div className="loginPage">
-            <div className="pageContainer">
-                <h1> Inicia Sesión</h1>
-                <h3>¿Aún no tienes una cuenta?<Link className='link' to='/signup'>Entra aquí</Link></h3>
-                <div className='formContainer'>
-                    <FormLogin />
+        <div className="login-page">
+            <div className="page-container">
+                <h1 className="login-title"> Inicia Sesión</h1>
+                <h3 className="signup-title">¿Aún no tienes una cuenta?<Link className='link' to='/signup'>Entra aquí</Link></h3>
+                <div className='form-container'>
+                    <FormLogin/>
                 </div>
             </div>
         </div>

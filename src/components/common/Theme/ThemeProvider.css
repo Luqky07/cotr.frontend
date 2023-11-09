@@ -2,7 +2,7 @@
     width: 100%;
     display: flex;
     justify-content: right;
-    margin-bottom: 2%;
+    margin-top: 1%;
 }
 
 select{
@@ -21,6 +21,12 @@ option:nth-child(1):hover {
   color: white;
 }
 option:nth-child(2):hover {
-    background-color: var(--primary-color);
-    color: white;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+@media (max-width: 768px){
+  .select-container{
+    margin-top: 2%;
   }
+}

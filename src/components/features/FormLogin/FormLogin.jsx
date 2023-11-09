@@ -1,31 +1,32 @@
 import { useState } from "react"
 import { ApiCOTR } from "../../../services/ApiCOTR"
 import { useAuth } from "../../../utils/AuthProvider"
-import { useNavigate } from "react-router-dom"
 import './FormLogin.css'
 
 export default function FormLogin() {
     const [user, setUser] = useState({user: '', password: ''})
+    const [isLoading, setIsLoading] = useState(false);
     const auth = useAuth()
-    const goTo = useNavigate()
 
     async function handleSubmit (event) {
+        setIsLoading(true);
         event.preventDefault()
         try{
             const response = await ApiCOTR.PostLogin(user)
             //console.log(response)
+            setIsLoading(false);
             auth.saveSessionInfo(response.accessToken, response.refreshToken);
-            goTo("/home")
         }
         catch(error) {
             console.log(error)
+            setIsLoading(false);
         }
 
     }
 
     return (
         <form className="form-login" onSubmit={handleSubmit}>
-            <div className="inputGroup">
+            <div className="input-group">
                 <label>Nombre de usuario</label>
                 <input
                     type="text" 
@@ -33,10 +34,11 @@ export default function FormLogin() {
                     onChange={ (e)=>{
                         setUser({user: e.target.value, password: user.password})
                     }}
+                    placeholder="MiUsuario@gmail.com"  
                     required
                 />
             </div>
-            <div className="inputGroup">
+            <div className="input-group">
                 <label>Contraseña</label>
                 <input
                     type="password" 
@@ -44,12 +46,20 @@ export default function FormLogin() {
                     onChange={ (e)=>{
                         setUser({user: user.user, password: e.target.value})
                     }}
+                    placeholder="******"
                     required
                 />
             </div>
-            <div className="submit">
-                <input type="submit" value='Login'/>
-            </div>
+            <div className="submit-container">
+                {!isLoading ?
+                    <input className='input-submit' type="submit" value="Iniciar sesión"/> 
+                    : 
+                    <div className='login-process'>
+                        <div className='loading'></div>
+                        <h5>Estamos validadando tus credenciales</h5>
+                    </div> 
+                }
+            </div>  
         </form>
     )
 }
