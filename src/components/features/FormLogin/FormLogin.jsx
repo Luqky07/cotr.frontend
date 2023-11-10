@@ -5,10 +5,12 @@ import './FormLogin.css'
 
 export default function FormLogin() {
     const [user, setUser] = useState({user: '', password: ''})
+    const [error, setError] = useState({isError: false, message: ''})
     const [isLoading, setIsLoading] = useState(false);
     const auth = useAuth()
 
     async function handleSubmit (event) {
+        setError({isError: false, message: ''});
         setIsLoading(true);
         event.preventDefault()
         try{
@@ -18,7 +20,7 @@ export default function FormLogin() {
             auth.saveSessionInfo(response.accessToken, response.refreshToken);
         }
         catch(error) {
-            console.log(error)
+            setError({isError: true, message: error.message})
             setIsLoading(false);
         }
 
@@ -26,8 +28,15 @@ export default function FormLogin() {
 
     return (
         <form className="form-login" onSubmit={handleSubmit}>
+            {
+                error.isError && (
+                    <h4 className="error">
+                        {error.message}
+                    </h4>
+                )
+            }
             <div className="input-group">
-                <label>Nombre de usuario</label>
+                <label>Nombre de usuario o email</label>
                 <input
                     type="text" 
                     value={user.user} 

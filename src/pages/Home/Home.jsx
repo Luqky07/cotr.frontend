@@ -5,7 +5,7 @@ export default function Home(){
     //console.log(auth.getAccessToken())
     return (
         <>
-            <h1>Home</h1>
+            <h1>Página en desarrollo</h1>
         </>
     )
 }

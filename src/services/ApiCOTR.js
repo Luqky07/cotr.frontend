@@ -21,6 +21,7 @@ export class ApiCOTR{
 
     static async PostSignup(signup) {
         try{
+            console.log(signup)
             const response = await fetch(`${API_COTR_URL}/user/signup`, {
                 method: 'POST',
                 headers: {
@@ -29,7 +30,7 @@ export class ApiCOTR{
                 body: JSON.stringify(signup)
             })
 
-            if(response.ok) return await response.json()
+            if(response.ok) return true;
 
             throw await response.json()
         }

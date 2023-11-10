@@ -15,7 +15,7 @@ export default function Login(){
     return (
         <div className="login-page">
             <div className="page-container">
-                <h1 className="login-title"> Inicia Sesión</h1>
+                <h1 className="login-title">Inicia Sesión</h1>
                 <h3 className="signup-title">¿Aún no tienes una cuenta?<Link className='link' to='/signup'>Entra aquí</Link></h3>
                 <div className='form-container'>
                     <FormLogin/>
