@@ -17,3 +17,137 @@ body{
 html{
   height: 100%;
 }
+
+.input-group{
+  box-sizing: border-box;
+  clear: both;
+  margin: 0 0 1em;
+  font-size: 1rem;
+}
+
+.input-group label{
+  display: block;
+  margin: 0 0 .28571429rem 0;
+  text-transform: none;
+  color: var(--primary-color);
+  font-size: 1em;
+  text-align: left;
+  font-weight: 400;
+  padding: 10px 0 0;
+}
+
+.input-group input{
+  box-sizing: border-box;
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  text-align: center;
+  margin: 0;
+  outline: 0;
+  line-height: 1.21428571em;
+  padding: .67857143em 1em;
+  font-size: 1em;
+  background: #242424;
+  color: var(--secundary-color);
+  width: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.input-group input::placeholder{
+color: rgba(191,191,191,.87);
+}
+
+.input-group input:focus {
+  border-color: var(--extra-color);
+  transition: color .1s ease, border-color .1s ease;
+}
+
+.submit-container{
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.input-submit{
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
+  background-color: var(--primary-color);
+  border: solid 3px var(--secundary-color);
+  font-size: 1.2em;
+  padding: .8em 3em .8em;
+  border-radius: 110px;
+  font-weight: 400;
+  min-width: 80px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  min-height: 1em;
+  outline: 0;
+  line-height: 1em;
+}
+
+.input-submit:hover{
+  background-color: var(--secundary-color);
+  color: var(--extra-color);
+  transition: color .1s ease, background-color .1s ease;
+}
+
+.login-process{
+  display: block;
+  font-size: 14px;
+  color: var(--secundary-color);
+}
+
+.loading::after, .loading::before{
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 50%;
+  width: 2.28571429rem;
+  height: 2.28571429rem;
+  margin: 0 0 0 -1.14285714rem;
+  border-radius: 50%;
+}
+
+.loading::after{
+  left: 50%;
+  animation: loading .6s linear infinite;
+  border-color: var(--primary-color) transparent transparent;
+  border-style: solid;
+  border-width: .2em;
+}
+
+.loading::before{
+  width: 100%;
+  height: 100%;
+  border: .2em solid #242424;
+}
+
+.loading{
+  display: block;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 2.28571429rem;
+  height: 2.28571429rem;
+  font-size: 1em;
+  text-align: center;
+  z-index: 1000;
+}
+
+.error{
+  margin: 0;
+  color: var(--extra-color);
+}
+
+@keyframes loading {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}

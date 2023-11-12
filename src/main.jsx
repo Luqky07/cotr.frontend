@@ -7,6 +7,8 @@ import ProtectedRoute from './utils/ProtectedRoute'
 import AuthProvider from './utils/AuthProvider'
 import Signup from './pages/Signup/Signup'
 import ThemeProvider from './components/common/Theme/ThemeProvider'
+import ChangePassword from './pages/ChangePassword/ChangePassword'
+import ChangePasswordRequest from './pages/ChangePasswordRequest/ChangePasswordRequest'
 
 const router = createBrowserRouter([
   {
@@ -16,6 +18,14 @@ const router = createBrowserRouter([
   {
     path: '/signup',
     element: <Signup/>
+  },
+  {
+    path: '/change-password',
+    element: <ChangePassword/>
+  },
+  {
+    path: '/change-password-request',
+    element: <ChangePasswordRequest/>
   },
   {
     path: '/',
