@@ -7,7 +7,7 @@ export default function FormLogin() {
     const [user, setUser] = useState({user: '', password: ''})
     const [error, setError] = useState({isError: false, message: ''})
     const [isLoading, setIsLoading] = useState(false);
-    const auth = useAuth()
+    const auth = useAuth();
 
     async function handleSubmit (event) {
         setError({isError: false, message: ''});

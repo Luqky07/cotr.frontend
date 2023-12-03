@@ -4,6 +4,7 @@ import { jwtDecode } from "jwt-decode";
 
 const AuthContext = createContext({
     isAuth: false,
+    isVerifingToken: false,
     getAccessToken: () => {},
     saveSessionInfo: (newAccessToken, newRefreshToken) => {},
     getRefreshToken: () => {}
@@ -12,6 +13,7 @@ const AuthContext = createContext({
 export default function AuthProvider({children}){
     const [isAuth, setIsAuth] = useState(false);
     const [accessToken, setAccessToken] = useState("");
+    const [isVerifingToken, setIsVerifingToken] = useState();
 
     useEffect(() =>
     {
@@ -23,14 +25,18 @@ export default function AuthProvider({children}){
             setIsAuth(true);
         }else{
             const token = getRefreshToken()
+            //console.log(jwtDecode(token).sub)
             if(token && (Date.now() < jwtDecode(token).exp * 1000)) {
                 try{
+                    setIsVerifingToken(true);
                     const newAccessToken = await ApiCOTR.GetAccessToken(token)
                     saveSessionInfo(newAccessToken.token, token);
+                    setIsVerifingToken(false);
                 }
                 catch(error){
                     console.log(error)
-                    setIsAuth(false)
+                    setIsAuth(false);
+                    setIsVerifingToken(true);
                 }
             }
             else setIsAuth(false)
@@ -54,7 +60,7 @@ export default function AuthProvider({children}){
     }
 
     return (
-        <AuthContext.Provider value={{ isAuth, getAccessToken, saveSessionInfo, getRefreshToken }}>
+        <AuthContext.Provider value={{ isAuth, isVerifingToken, getAccessToken, saveSessionInfo, getRefreshToken }}>
             {children}
         </AuthContext.Provider>
     )

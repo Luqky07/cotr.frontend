@@ -1,4 +1,5 @@
 import { API_COTR_URL } from "../utils/Constants";
+
 export class ApiCOTR{
     static async PostLogin(user) {
         try{
@@ -88,6 +89,25 @@ export class ApiCOTR{
             })
 
             if(response.ok) return true;
+
+            throw await response.json()
+        }
+        catch(error) {
+            throw error
+        }
+    }
+
+    static async GetExercises(accessToken){
+        try{
+            const response = await fetch(`${API_COTR_URL}/exercise`, {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${accessToken}`
+                }
+            })
+
+            if(response.ok) return await response.json()
 
             throw await response.json()
         }
