@@ -1,0 +1,4 @@
+.error a{
+    text-decoration: none;
+    color: var(--secundary-color);
+}

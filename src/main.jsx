@@ -11,6 +11,7 @@ import ChangePassword from './pages/ChangePassword/ChangePassword'
 import ChangePasswordRequest from './pages/ChangePasswordRequest/ChangePasswordRequest'
 import Profile from './pages/Profile/Profile'
 import Languaje from './pages/Languaje/Languaje'
+import NoExist from './pages/NoExist/NoExist'
 
 const router = createBrowserRouter([
   {
@@ -46,12 +47,11 @@ const router = createBrowserRouter([
         element: <Languaje/>
       }
     ]
-  }/*,
+  },
   {
     path: '*',
-    element: <Home/>
+    element: <NoExist/>
   }
-  */
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
