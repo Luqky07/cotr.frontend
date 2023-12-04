@@ -48,15 +48,19 @@
     box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
     background-color: var(--primary-color);
     border: solid 3px var(--secundary-color);
-    padding: .3em 2em .3em;
-    border-radius: 10px;
+    font-size: 1.2em;
+    padding: .8em 1em .8em;
+    border-radius: 110px;
+    min-width: 40px;
     color: #fff;
     cursor: pointer;
     display: inline-block;
-    min-height: .4em;
-    outline: 0;
-    line-height: .5em;
-    font-size: 1em;
+}
+
+.exercise-button button:hover{
+    background-color: var(--secundary-color);
+    color: var(--extra-color);
+    transition: color .1s ease, background-color .1s ease;
 }
 
 @media (max-width: 768px){

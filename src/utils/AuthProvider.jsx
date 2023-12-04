@@ -7,7 +7,8 @@ const AuthContext = createContext({
     isVerifingToken: false,
     getAccessToken: () => {},
     saveSessionInfo: (newAccessToken, newRefreshToken) => {},
-    getRefreshToken: () => {}
+    getRefreshToken: () => {},
+    logout: () => {}
 });
 
 export default function AuthProvider({children}){
@@ -64,8 +65,14 @@ export default function AuthProvider({children}){
         return undefined
     }
 
+    function logout(){
+        setAccessToken(undefined);
+        localStorage.removeItem("token");
+        setIsAuth(false);
+    }
+
     return (
-        <AuthContext.Provider value={{ isAuth, isVerifingToken, getAccessToken, saveSessionInfo, getRefreshToken }}>
+        <AuthContext.Provider value={{ isAuth, isVerifingToken, getAccessToken, saveSessionInfo, getRefreshToken, logout }}>
             {children}
         </AuthContext.Provider>
     )

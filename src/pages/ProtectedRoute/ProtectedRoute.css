@@ -16,6 +16,25 @@
     background-color: #363535;
 }
 
+.logout-button{
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
+    background-color: var(--primary-color);
+    border: solid 3px var(--secundary-color);
+    font-size: 1.2em;
+    padding: .8em 1em .8em;
+    border-radius: 110px;
+    min-width: 40px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.logout-button:hover{
+    background-color: var(--secundary-color);
+    color: var(--extra-color);
+    transition: color .1s ease, background-color .1s ease;
+}
+
 @media (min-width: 769px) {
   .protected-page-container {
       margin-top: 3%;
