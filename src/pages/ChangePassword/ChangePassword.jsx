@@ -29,7 +29,7 @@ export default function ChangePassword(){
         }
         else{
             try{
-                await ApiCOTR.PostPasswordChange({token: token, password: password.password});
+                await ApiCOTR.PostPasswordChangeAsync({token: token, password: password.password});
                 alert('Contraseña actualizada');
                 setIsLoading(false);
                 goTo('/');

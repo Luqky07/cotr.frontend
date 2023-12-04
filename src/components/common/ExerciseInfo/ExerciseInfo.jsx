@@ -7,8 +7,6 @@ export default function ExerciseInfo({exerciseData}){
         goTo(`/exercise/${exerciseData.exercise.exerciseId}`);
     };
 
-    console.log(typeof(exerciseData.exercise.creationDate));
-
     return (
         <div className="exercise-info">
             <div className="link-exercise link-languaje">

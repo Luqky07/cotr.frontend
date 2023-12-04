@@ -25,7 +25,7 @@ export default function FormSignup() {
         setIsLoading(true);
         event.preventDefault()
         try{
-            await ApiCOTR.PostSignup(user)
+            await ApiCOTR.PostSignupAsync(user)
             setIsLoading(false);
             goTo('/');
         }

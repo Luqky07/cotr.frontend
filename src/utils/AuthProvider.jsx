@@ -13,7 +13,7 @@ const AuthContext = createContext({
 export default function AuthProvider({children}){
     const [isAuth, setIsAuth] = useState(false);
     const [accessToken, setAccessToken] = useState("");
-    const [isVerifingToken, setIsVerifingToken] = useState();
+    const [isVerifingToken, setIsVerifingToken] = useState(true);
 
     useEffect(() =>
     {
@@ -21,26 +21,31 @@ export default function AuthProvider({children}){
     }, [])
 
     async function checkAuth() {
+        setIsVerifingToken(true);
         if(accessToken && (Date.now() < jwtDecode(accessToken).exp * 1000)){
             setIsAuth(true);
+            setIsVerifingToken(false);
         }else{
             const token = getRefreshToken()
             //console.log(jwtDecode(token).sub)
             if(token && (Date.now() < jwtDecode(token).exp * 1000)) {
                 try{
-                    setIsVerifingToken(true);
-                    const newAccessToken = await ApiCOTR.GetAccessToken(token)
+                    const newAccessToken = await ApiCOTR.GetAccessTokenAsync(token)
                     saveSessionInfo(newAccessToken.token, token);
                     setIsVerifingToken(false);
                 }
                 catch(error){
                     console.log(error)
                     setIsAuth(false);
-                    setIsVerifingToken(true);
+                    setIsVerifingToken(false);
                 }
             }
-            else setIsAuth(false)
+            else {
+                setIsAuth(false);
+                setIsVerifingToken(false);
+            }
         }
+        //setIsVerifingToken(true);
     }
 
     function saveSessionInfo(newAccessToken, newRefreshToken){

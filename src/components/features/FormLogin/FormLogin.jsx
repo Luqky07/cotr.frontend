@@ -14,8 +14,7 @@ export default function FormLogin() {
         setIsLoading(true);
         event.preventDefault()
         try{
-            const response = await ApiCOTR.PostLogin(user)
-            //console.log(response)
+            const response = await ApiCOTR.PostLoginAsync(user)
             setIsLoading(false);
             auth.saveSessionInfo(response.accessToken, response.refreshToken);
         }

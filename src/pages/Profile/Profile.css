@@ -1,0 +1,10 @@
+.profile-title{
+    text-align: center;
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px){
+    .profile-title{
+        line-height: 1em;
+    }
+}

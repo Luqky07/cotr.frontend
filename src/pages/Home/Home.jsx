@@ -19,8 +19,9 @@ export default function Home(){
 
     async function LoadingExercises(){
         try{
+            setError({isError: false, message: ""})
             setIsLoading(true);
-            const response = await ApiCOTR.GetExercises(auth.getAccessToken())
+            const response = await ApiCOTR.GetExercisesAsync(auth.getAccessToken())
             setExercises(response);
             setIsLoading(false);
         }
@@ -31,32 +32,25 @@ export default function Home(){
     }
 
     return (
-        <div className="exercises-page">
-            <div className="exercises-center">
-                <div className='exercises-container'>
-                    {
-                        isLoading ? 
-                        <div className='login-process exercise-loading'>
-                            <div className='loading'></div>
-                            <h3>Estamos cargando los ejercicios</h3>
-                        </div>
-                        :
-                        <>
-                            {
-                                error.isError && (
-                                    <h3 className="error">
-                                        {error.message}
-                                    </h3>
-                                )
-                            }
-                            <h1 className="exercises-title">Ejercicios</h1>
-                            {
-                                exercises.exercises.map(ex => (<ExerciseInfo key={ex.exercise.exerciseId} exerciseData={ex}></ExerciseInfo>))
-                            }
-                        </>
-                    }
-                </div>
+        isLoading ? 
+            <div className='login-process exercise-loading'>
+                <div className='loading'></div>
+                <h3>Estamos cargando los ejercicios</h3>
             </div>
-        </div>
+        :  
+            error.isError ?
+                <h3 className="error">
+                    {error.message}
+                </h3>
+            :
+                exercises.count > 0 ?
+                    <>
+                        <h1 className="exercises-title">Ejercicios</h1>
+                        {
+                            exercises.exercises.map(ex => (<ExerciseInfo key={ex.exercise.exerciseId} exerciseData={ex}></ExerciseInfo>))
+                        }
+                    </>
+                :
+                <h3 className="error">Vaya, parece que no hay ejercicios actualmente</h3>
     )
 }

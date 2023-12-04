@@ -1,7 +1,7 @@
 import { API_COTR_URL } from "../utils/Constants";
 
 export class ApiCOTR{
-    static async PostLogin(user) {
+    static async PostLoginAsync(user) {
         try{
             const response = await fetch(`${API_COTR_URL}/user/login`, {
                 method: 'POST',
@@ -20,7 +20,7 @@ export class ApiCOTR{
         }
     }
 
-    static async PostSignup(signup) {
+    static async PostSignupAsync(signup) {
         try{
             const response = await fetch(`${API_COTR_URL}/user/signup`, {
                 method: 'POST',
@@ -39,7 +39,7 @@ export class ApiCOTR{
         }
     }
 
-    static async GetAccessToken(refreshToken) {
+    static async GetAccessTokenAsync(refreshToken) {
         try{
             const response = await fetch(`${API_COTR_URL}/user/access-token`, {
                 method: 'GET',
@@ -58,7 +58,7 @@ export class ApiCOTR{
         }
     }
 
-    static async PostPasswordChange(changeRequest){
+    static async PostPasswordChangeAsync(changeRequest){
         try{
             const response = await fetch(`${API_COTR_URL}/user/change-password`, {
                 method: 'PATCH',
@@ -78,7 +78,7 @@ export class ApiCOTR{
         }
     }
 
-    static async PostPasswordChangeRequest(changeRequest){
+    static async PostPasswordChangeRequestAsync(changeRequest){
         try{
             const response = await fetch(`${API_COTR_URL}/user/change-password`, {
                 method: 'POST',
@@ -97,12 +97,47 @@ export class ApiCOTR{
         }
     }
 
-    static async GetExercises(accessToken){
+    static async GetExercisesAsync(accessToken){
         try{
             const response = await fetch(`${API_COTR_URL}/exercise`, {
                 method: 'GET',
                 headers: {
-                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${accessToken}`
+                }
+            })
+
+            if(response.ok) return await response.json()
+
+            throw await response.json()
+        }
+        catch(error) {
+            throw error
+        }
+    }
+
+    static async GetExercisesByCreatorIdAsync(accessToken, creatorId){
+        try{
+            const response = await fetch(`${API_COTR_URL}/exercise?creatorId=${creatorId}`, {
+                method: 'GET',
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`
+                }
+            })
+
+            if(response.ok) return await response.json()
+
+            throw await response.json()
+        }
+        catch(error) {
+            throw error
+        }
+    }
+
+    static async GetUserInfoByIdAsync(accessToken, userId){
+        try{
+            const response = await fetch(`${API_COTR_URL}/user/profile/${userId}`, {
+                method: 'GET',
+                headers: {
                     "Authorization": `Bearer ${accessToken}`
                 }
             })

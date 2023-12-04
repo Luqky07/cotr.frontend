@@ -21,7 +21,7 @@ export default function ChangePasswordRequest(){
         event.preventDefault();
 
         try{
-            await ApiCOTR.PostPasswordChangeRequest(email);
+            await ApiCOTR.PostPasswordChangeRequestAsync(email);
             alert('Email enviado');
             setIsLoading(false);
             goTo('/');

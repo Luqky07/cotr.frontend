@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom/client'
 import Login from './pages/Login/Login'
 import Home from './pages/Home/Home'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import ProtectedRoute from './utils/ProtectedRoute'
+import ProtectedRoute from './pages/ProtectedRoute/ProtectedRoute'
 import AuthProvider from './utils/AuthProvider'
 import Signup from './pages/Signup/Signup'
 import ThemeProvider from './components/common/Theme/ThemeProvider'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import ChangePasswordRequest from './pages/ChangePasswordRequest/ChangePasswordRequest'
+import Profile from './pages/Profile/Profile'
 
 const router = createBrowserRouter([
   {
@@ -32,8 +33,12 @@ const router = createBrowserRouter([
     element: <ProtectedRoute/>,
     children: [
       {
-        path: "/home",
+        path: "home",
         element: <Home/>
+      },
+      {
+        path: "user/profile/:userId",
+        element: <Profile/>
       }
     ]
   }/*,
