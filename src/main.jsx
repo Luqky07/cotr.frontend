@@ -12,6 +12,7 @@ import ChangePasswordRequest from './pages/ChangePasswordRequest/ChangePasswordR
 import Profile from './pages/Profile/Profile'
 import Languaje from './pages/Languaje/Languaje'
 import NoExist from './pages/NoExist/NoExist'
+import TryExercise from './pages/TryExercise/TryExercise'
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,11 @@ const router = createBrowserRouter([
       {
         path: "languajes/:languajeId",
         element: <Languaje/>
+      }
+      ,
+      {
+        path: "exercise/:exerciseId",
+        element: <TryExercise/>
       }
     ]
   },

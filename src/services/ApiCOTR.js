@@ -115,6 +115,24 @@ export class ApiCOTR{
         }
     }
 
+    static async GetExerciseByExerciseIdAsync(accessToken, exerciseId){
+        try{
+            const response = await fetch(`${API_COTR_URL}/exercise/${exerciseId}`, {
+                method: 'GET',
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`
+                }
+            })
+
+            if(response.ok) return await response.json()
+
+            throw await response.json()
+        }
+        catch(error) {
+            throw error
+        }
+    }
+
     static async GetExercisesByCreatorIdAsync(accessToken, creatorId){
         try{
             const response = await fetch(`${API_COTR_URL}/exercise?creatorId=${creatorId}`, {
@@ -197,6 +215,26 @@ export class ApiCOTR{
             })
 
             if(response.ok) return await response.json()
+
+            throw await response.json()
+        }
+        catch(error) {
+            throw error
+        }
+    }
+
+    static async TryExerciseAsync(accessToken, exerciseId, code){
+        try{
+            const response = await fetch(`${API_COTR_URL}/exercise/${exerciseId}`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${accessToken}`
+                },
+                body: JSON.stringify(code)
+            })
+
+            if(response.ok) return true;
 
             throw await response.json()
         }

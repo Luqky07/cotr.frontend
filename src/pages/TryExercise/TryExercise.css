@@ -1,0 +1,14 @@
+.try-exercise-title{
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.try-exercise-statement{
+    color: var(--extra-color);
+}
+
+.exercise-submit{
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
