@@ -4,6 +4,8 @@ import { useAuth } from "../../utils/AuthProvider";
 import ExerciseInfo from "../../components/common/ExerciseInfo/ExerciseInfo";
 
 import './Home.css';
+import { Link } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 export default function Home(){
     const auth = useAuth();
@@ -32,25 +34,34 @@ export default function Home(){
     }
 
     return (
-        isLoading ? 
-            <div className='login-process exercise-loading'>
-                <div className='loading'></div>
-                <h3>Estamos cargando los ejercicios</h3>
+        <>
+            <div className="nav-button">
+                <Link to={`/user/profile/${jwtDecode(auth.getAccessToken()).sub}`}>
+                    <img src="../../src/assets/usuario_white.svg"></img>
+                </Link>
             </div>
-        :  
-            error.isError ?
-                <h3 className="error">
-                    {error.message}
-                </h3>
-            :
-                exercises.count > 0 ?
-                    <>
-                        <h1 className="exercises-title">Ejercicios</h1>
-                        {
-                            exercises.exercises.map(ex => (<ExerciseInfo key={ex.exercise.exerciseId} exerciseData={ex}></ExerciseInfo>))
-                        }
-                    </>
-                :
-                <h3 className="error">Vaya, parece que no hay ejercicios actualmente</h3>
+            {
+                isLoading ? 
+                    <div className='login-process exercise-loading'>
+                        <div className='loading'></div>
+                        <h3>Estamos cargando los ejercicios</h3>
+                    </div>
+                :  
+                    error.isError ?
+                        <h3 className="error">
+                            {error.message}
+                        </h3>
+                    :
+                        exercises.count > 0 ?
+                            <>
+                                <h1 className="exercises-title">Ejercicios</h1>
+                                {
+                                    exercises.exercises.map(ex => (<ExerciseInfo key={ex.exercise.exerciseId} exerciseData={ex}/>))
+                                }
+                            </>
+                        :
+                        <h3 className="error">Vaya, parece que no hay ejercicios actualmente</h3>
+            }
+        </>
     )
 }

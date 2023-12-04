@@ -1,13 +1,16 @@
-.profile-title{
+.languaje-title{
     text-align: center;
     color: var(--primary-color);
 }
-.profile-info{
+.languaje-info{
     color: var(--extra-color);
+    text-align: justify;
 }
-
 @media (max-width: 768px){
-    .profile-title{
+    .languaje-title{
         line-height: 1em;
+    }
+    .languaje-info{
+        text-align: left;
     }
 }

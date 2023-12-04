@@ -143,6 +143,16 @@ color: rgba(191,191,191,.87);
   color: var(--extra-color);
 }
 
+.nav-button{
+  width: 40px;
+  background-color: var(--primary-color);
+  border-radius: 100%;
+  padding: 7px;
+}
+.nav-button img{
+  width: 100%;
+}
+
 @keyframes loading {
   0% {
       transform: rotate(0deg);

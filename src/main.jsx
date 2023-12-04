@@ -10,6 +10,7 @@ import ThemeProvider from './components/common/Theme/ThemeProvider'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import ChangePasswordRequest from './pages/ChangePasswordRequest/ChangePasswordRequest'
 import Profile from './pages/Profile/Profile'
+import Languaje from './pages/Languaje/Languaje'
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "user/profile/:userId",
         element: <Profile/>
+      },
+      {
+        path: "languajes/:languajeId",
+        element: <Languaje/>
       }
     ]
   }/*,

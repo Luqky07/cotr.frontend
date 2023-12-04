@@ -133,9 +133,63 @@ export class ApiCOTR{
         }
     }
 
+    static async GetExercisesByLanguajeIdAsync(accessToken, languajeId){
+        try{
+            const response = await fetch(`${API_COTR_URL}/exercise?languajeId=${languajeId}`, {
+                method: 'GET',
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`
+                }
+            })
+
+            if(response.ok) return await response.json()
+
+            throw await response.json()
+        }
+        catch(error) {
+            throw error
+        }
+    }
+
     static async GetUserInfoByIdAsync(accessToken, userId){
         try{
             const response = await fetch(`${API_COTR_URL}/user/profile/${userId}`, {
+                method: 'GET',
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`
+                }
+            })
+
+            if(response.ok) return await response.json()
+
+            throw await response.json()
+        }
+        catch(error) {
+            throw error
+        }
+    }
+
+    static async GetLanguajeInfoByIdAsync(accessToken, languajeId){
+        try{
+            const response = await fetch(`${API_COTR_URL}/languajes/${languajeId}`, {
+                method: 'GET',
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`
+                }
+            })
+
+            if(response.ok) return await response.json()
+
+            throw await response.json()
+        }
+        catch(error) {
+            throw error
+        }
+    }
+
+    static async GetLanguajesAsync(accessToken){
+        try{
+            const response = await fetch(`${API_COTR_URL}/languajes`, {
                 method: 'GET',
                 headers: {
                     "Authorization": `Bearer ${accessToken}`

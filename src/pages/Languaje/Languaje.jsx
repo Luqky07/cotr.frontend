@@ -1,30 +1,29 @@
-import { useAuth } from "../../utils/AuthProvider";
 import { Link, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useAuth } from "../../utils/AuthProvider";
 import { ApiCOTR } from "../../services/ApiCOTR";
-import ProfileInfo from "../../components/features/ProfileInfo/ProfileInfo";
-import './Profile.css'
+import { useEffect, useState } from "react";
 import ExerciseInfo from "../../components/common/ExerciseInfo/ExerciseInfo";
+import './Languaje.css'
 
-export default function Profile(){
+export default function Languaje(){
     const auth = useAuth();
     const params = useParams();
     
-    const [user, setUser] = useState();
+    const [languaje, setLanguaje] = useState();
     const [exercises, setExercises] = useState(undefined);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState({isError: false, message: ""})
 
     useEffect(() =>{
-        GetUserInfo();
+        GetLanguajeInfo();
     },[])
 
-    async function GetUserInfo(){
+    async function GetLanguajeInfo(){
         try{
             setIsLoading(true);
-            const userResponse = await ApiCOTR.GetUserInfoByIdAsync(auth.getAccessToken(), params.userId);
-            setUser(userResponse);
-            const exercisesResponse = await ApiCOTR.GetExercisesByCreatorIdAsync(auth.getAccessToken(), params.userId);
+            const languajeResponse = await ApiCOTR.GetLanguajeInfoByIdAsync(auth.getAccessToken(), params.languajeId);
+            setLanguaje(languajeResponse);
+            const exercisesResponse = await ApiCOTR.GetExercisesByLanguajeIdAsync(auth.getAccessToken(), params.languajeId);
             setExercises(exercisesResponse);
             setIsLoading(false);
         }
@@ -40,12 +39,12 @@ export default function Profile(){
                 <Link to={'/home'}>
                     <img src="../../src/assets/hogar.svg"></img>
                 </Link>
-            </div>
+            </div>        
             {
                 isLoading ? 
                     <div className='login-process exercise-loading'>
                         <div className='loading'></div>
-                        <h3>Estamos cargando los datos del usuario</h3>
+                        <h3>Estamos cargando la información del lenguaje</h3>
                     </div>
                 :  
                     error.isError ?
@@ -54,18 +53,18 @@ export default function Profile(){
                         </h3>
                     :
                         <>
-                            <h1 className="profile-title">Información de {user.nickname}</h1>
-                            <ProfileInfo userData={user}/>
+                            <h1 className="languaje-title">{languaje.name}</h1>
+                            <p className="languaje-info">{languaje.description}</p>
                             {
                                 exercises.count > 0 ?
                                     <>
-                                        <h1 className="profile-title">Ejercicios creados por {user.nickname}</h1>
+                                        <h1 className="languaje-title">Ejercicios de {languaje.name}</h1>
                                         {
                                             exercises.exercises.map(ex => (<ExerciseInfo key={ex.exercise.exerciseId} exerciseData={ex}/>))
                                         }
                                     </>
                                 :
-                                <h3 className="error">Parece que {user.nickname} no ha creado ningún ejercicio todavía</h3>
+                                <h3 className="error">Parece que no se ha creado ningún ejercicio todavía para este lenguaje</h3>
                             }
                         </>
             }
