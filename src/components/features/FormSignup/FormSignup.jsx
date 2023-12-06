@@ -27,6 +27,7 @@ export default function FormSignup() {
         try{
             await ApiCOTR.PostSignupAsync(user)
             setIsLoading(false);
+            alert("Tu cuenta estará bloqueada hasta que valides tu dirección de correo electrónico");
             goTo('/');
         }
         catch(error) {

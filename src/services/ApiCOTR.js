@@ -68,7 +68,6 @@ export class ApiCOTR{
                 body: JSON.stringify(changeRequest)
             })
 
-            console.log(response)
             if(response.ok) return true;
 
             throw await response.json()
@@ -232,6 +231,83 @@ export class ApiCOTR{
                     "Authorization": `Bearer ${accessToken}`
                 },
                 body: JSON.stringify(code)
+            })
+
+            if(response.ok) return true;
+
+            throw await response.json()
+        }
+        catch(error) {
+            throw error
+        }
+    }
+
+    static async CreateExerciseAsync(accessToken, test){
+        try{
+            const response = await fetch(`${API_COTR_URL}/exercise`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${accessToken}`
+                },
+                body: JSON.stringify(test)
+            })
+
+            if(response.ok) return await response.json();
+
+            throw await response.json()
+        }
+        catch(error) {
+            throw error
+        }
+    }
+
+    static async GetExerciseTestByExerciseIdAsync(accessToken, exerciseId){
+        try{
+            const response = await fetch(`${API_COTR_URL}/exercise/${exerciseId}/test`, {
+                method: 'GET',
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`
+                }
+            })
+
+            if(response.ok) return await response.json()
+
+            throw await response.json()
+        }
+        catch(error) {
+            throw error
+        }
+    }
+
+    static async EditExerciseAsync(accessToken, test, exerciseId){
+        try{
+            const response = await fetch(`${API_COTR_URL}/exercise/${exerciseId}/test`, {
+                method: 'PATCH',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${accessToken}`
+                },
+                body: JSON.stringify(test)
+            })
+
+            if(response.ok) return true;
+
+            throw await response.json()
+        }
+        catch(error) {
+            throw error
+        }
+    }
+
+    static async VerifyEmailAsync(verifyRequest){
+        try{
+            const response = await fetch(`${API_COTR_URL}/user/verify`, {
+                method: 'PATCH',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(verifyRequest)
             })
 
             if(response.ok) return true;

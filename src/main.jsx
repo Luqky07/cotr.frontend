@@ -13,6 +13,9 @@ import Profile from './pages/Profile/Profile'
 import Languaje from './pages/Languaje/Languaje'
 import NoExist from './pages/NoExist/NoExist'
 import TryExercise from './pages/TryExercise/TryExercise'
+import CreateExercise from './pages/CreateExercise/CreateExercise'
+import EditExercise from './pages/EditExercise/EditExercise'
+import VerifyEmail from './pages/VerifyEmail/VerifyEmail'
 
 const router = createBrowserRouter([
   {
@@ -32,6 +35,10 @@ const router = createBrowserRouter([
     element: <ChangePasswordRequest/>
   },
   {
+    path: '/user/verify',
+    element: <VerifyEmail/>
+  },
+  {
     path: '/',
     element: <ProtectedRoute/>,
     children: [
@@ -46,11 +53,28 @@ const router = createBrowserRouter([
       {
         path: "languajes/:languajeId",
         element: <Languaje/>
-      }
-      ,
+      },
       {
-        path: "exercise/:exerciseId",
-        element: <TryExercise/>
+        path: "exercise",
+        children: [
+          {
+            path: "",
+            element: <CreateExercise/>
+          },
+          {
+            path: ":exerciseId",
+            children:[
+              {
+                path: "",
+                element: <TryExercise/>
+              },
+              {
+                path: "edit",
+                element: <EditExercise/>
+              }
+            ]
+          }
+        ]
       }
     ]
   },

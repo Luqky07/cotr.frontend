@@ -13,6 +13,7 @@ export default function ExerciseInfo({exerciseData}){
                 <Link to={`/languajes/${exerciseData.languaje.languajeId}`}>
                     <h2>{exerciseData.languaje.name}</h2>
                 </Link>
+                {!exerciseData.exercise.isAproved && (<p>Ejercicio sin aprobar</p>)}
             </div>
             <p className="exercise-statement">{exerciseData.exercise.statement}</p>
             <div className="exercise-footer">

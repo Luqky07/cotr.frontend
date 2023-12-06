@@ -35,10 +35,17 @@ export default function Home(){
 
     return (
         <>
-            <div className="nav-button">
-                <Link to={`/user/profile/${jwtDecode(auth.getAccessToken()).sub}`}>
-                    <img src="../../src/assets/usuario_white.svg"></img>
-                </Link>
+            <div className="nav-button-container">
+                <div className="nav-button">
+                    <Link to={`/user/profile/${jwtDecode(auth.getAccessToken()).sub}`}>
+                        <img src="../../src/assets/usuario_white.svg"></img>
+                    </Link>
+                </div>
+                <div className="nav-button">
+                    <Link to={'/exercise'}>
+                        <img src="../../src/assets/mas.svg"></img>
+                    </Link>
+                </div>
             </div>
             {
                 isLoading ? 

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ApiCOTR } from "../../services/ApiCOTR";
 import { Editor } from "@monaco-editor/react";
 import './TryExercise.css'
+import { jwtDecode } from "jwt-decode";
 
 export default function TryExercise(){
     const auth = useAuth();
@@ -17,10 +18,10 @@ export default function TryExercise(){
     const [error, setError] = useState({isError: false, message: ""})
 
     useEffect(() =>{
-        GetLanguajeInfo();
+        GetExerciseInfo();
     },[])
 
-    async function GetLanguajeInfo(){
+    async function GetExerciseInfo(){
         try{
             setIsLoading(true);
             const exercisesResponse = await ApiCOTR.GetExerciseByExerciseIdAsync(auth.getAccessToken(), params.exerciseId);
@@ -38,10 +39,9 @@ export default function TryExercise(){
         try{
             setCodeError({isError: false, message: ""});
             setIsValidating(true);
-            console.log(code);
             await ApiCOTR.TryExerciseAsync(auth.getAccessToken(), params.exerciseId, code);
             setIsValidating(false);
-            setCodeError({isError: true, message: "Ejercicio resuelto"});
+            alert("Ejercicio resuelto")
         }
         catch(error) {
             setCodeError({isError: true, message: error.message});
@@ -74,6 +74,9 @@ export default function TryExercise(){
                             {
                                 codeError.isError && (
                                     <h3 className="error">
+                                        {
+                                            codeError.type && (<span>codeError.type</span>)
+                                        }
                                         {codeError.message}
                                     </h3>
                                 )
@@ -91,11 +94,22 @@ export default function TryExercise(){
                                 isValidating ?
                                     <div className='login-process exercise-loading'>
                                         <div className='loading'></div>
-                                        <h3>Estamos validando tu ejercicio</h3>
+                                        <h3>Estamos probando tu ejercicio</h3>
                                     </div>
                                 :
-                                    <div className="exercise-submit">
-                                        <button className="input-submit" onClick={handleclick}>Intentar ejercicio</button>
+                                    <div className="button-container">
+                                        <div className="exercise-submit">
+                                            <button className="input-submit" onClick={handleclick}>Intentar ejercicio</button>
+                                            {
+                                                exercise.author.userId == jwtDecode(auth.getAccessToken()).sub && (
+                                                    <div className="nav-button">
+                                                        <Link to={`/exercise/${exercise.exercise.exerciseId}/edit`}>
+                                                            <img src="../../src/assets/lapiz.svg"></img>
+                                                        </Link>
+                                                    </div>
+                                                )
+                                            }
+                                        </div>
                                     </div>
                             }
                         </>

@@ -12,3 +12,12 @@
     justify-content: center;
     margin: 30px 0;
 }
+
+.exercise-submit button{
+    margin-right: 15px;
+}
+
+.error span{
+    color: var(--primary-color);
+    margin-right: 15px;
+}

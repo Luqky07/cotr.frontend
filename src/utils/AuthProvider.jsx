@@ -18,6 +18,9 @@ export default function AuthProvider({children}){
 
     useEffect(() =>
     {
+        setTimeout(function() {
+            checkAuth()
+        }, 900000)
         checkAuth()
     }, [])
 

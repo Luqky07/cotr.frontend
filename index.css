@@ -146,11 +146,26 @@ color: rgba(191,191,191,.87);
 .nav-button{
   width: 40px;
   background-color: var(--primary-color);
+  border: solid 3px var(--extra-color);
   border-radius: 100%;
   padding: 7px;
 }
+
+.nav-button:hover{
+  background-color: var(--extra-color);
+  border: solid 3px var(--primary-color);
+}
+
 .nav-button img{
   width: 100%;
+}
+
+.nav-button-container{
+  display: flex;
+}
+
+.nav-button-container .nav-button{
+  margin-right: 30px;
 }
 
 @keyframes loading {
