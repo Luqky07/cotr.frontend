@@ -37,7 +37,7 @@ export default function Languaje(){
         <>
             <div className="nav-button">
                 <Link to={'/home'}>
-                    <img src="../../src/assets/hogar.svg"></img>
+                    <img src="../../../../assets/hogar.svg"></img>
                 </Link>
             </div>        
             {

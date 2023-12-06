@@ -38,12 +38,12 @@ export default function Home(){
             <div className="nav-button-container">
                 <div className="nav-button">
                     <Link to={`/user/profile/${jwtDecode(auth.getAccessToken()).sub}`}>
-                        <img src="../../src/assets/usuario_white.svg"></img>
+                        <img src="../../../../assets/usuario_white.svg"></img>
                     </Link>
                 </div>
                 <div className="nav-button">
                     <Link to={'/exercise'}>
-                        <img src="../../src/assets/mas.svg"></img>
+                        <img src="../../../../assets/mas.svg"></img>
                     </Link>
                 </div>
             </div>

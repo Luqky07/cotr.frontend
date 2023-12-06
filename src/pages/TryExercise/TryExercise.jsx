@@ -53,7 +53,7 @@ export default function TryExercise(){
         <>
             <div className="nav-button">
                 <Link to={'/home'}>
-                    <img src="../../src/assets/hogar.svg"></img>
+                    <img src="../../../../assets/hogar.svg"></img>
                 </Link>
             </div>        
             {
@@ -104,7 +104,7 @@ export default function TryExercise(){
                                                 exercise.author.userId == jwtDecode(auth.getAccessToken()).sub && (
                                                     <div className="nav-button">
                                                         <Link to={`/exercise/${exercise.exercise.exerciseId}/edit`}>
-                                                            <img src="../../src/assets/lapiz.svg"></img>
+                                                            <img src="../../../../assets/lapiz.svg"></img>
                                                         </Link>
                                                     </div>
                                                 )

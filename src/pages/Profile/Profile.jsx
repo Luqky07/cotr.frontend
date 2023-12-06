@@ -38,7 +38,7 @@ export default function Profile(){
         <>
             <div className="nav-button">
                 <Link to={'/home'}>
-                    <img src="../../src/assets/hogar.svg"></img>
+                    <img src="../../../../assets/hogar.svg"></img>
                 </Link>
             </div>
             {
