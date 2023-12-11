@@ -79,7 +79,10 @@ export default function CreateExercise(){
                             <form onSubmit={handleSubmit}>
                                 <div className="input-group">
                                     <label htmlFor="languajes">Selecciona una lenguaje de programación</label>
-                                    <select name="languajes" onChange={e => setTest({languajeId: e.target.value, statement: test.statement, testCode: test.testCode})} value={test.languajeId}>
+                                    <select name="languajes" onChange={e => { 
+                                        setTest({languajeId: e.target.value, statement: test.statement, testCode: test.testCode})
+                                        console.log(test);
+                                    }} value={test.languajeId}>
                                         {
                                             languajes.map(ex => (<option key={ex.languajeId} value={ex.languajeId}>{ex.name}</option>))
                                         }
@@ -94,8 +97,8 @@ export default function CreateExercise(){
                                     <Editor
                                         height="80vh"
                                         theme="vs-dark"
-                                        defaultLanguage={languajes[test.languajeId -1].name.toLowerCase()}
-                                        defaultValue={languajes[test.languajeId -1].testStart}
+                                        language={languajes[test.languajeId - 1].name.toLowerCase()}
+                                        value={languajes[test.languajeId - 1].testStart}
                                         onChange={e => setTest({languajeId: test.languajeId, statement: test.statement, testCode: e})}
                                     >
                                     </Editor>
