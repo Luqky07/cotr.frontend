@@ -9,9 +9,9 @@ export default function ExerciseInfo({exerciseData}){
 
     return (
         <div className="exercise-info">
-            <div className="link-exercise link-languaje">
-                <Link to={`/languajes/${exerciseData.languaje.languajeId}`}>
-                    <h2>{exerciseData.languaje.name}</h2>
+            <div className="link-exercise link-language">
+                <Link to={`/languages/${exerciseData.language.languageId}`}>
+                    <h2>{exerciseData.language.name}</h2>
                 </Link>
                 {!exerciseData.exercise.isAproved && (<p>Ejercicio sin aprobar</p>)}
             </div>

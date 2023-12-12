@@ -9,22 +9,22 @@ export default function CreateExercise(){
     const auth = useAuth();
     const goTo = useNavigate();
     
-    const [languajes, setLanguajes] = useState();
-    const [test, setTest] = useState({languajeId: 1, statement: "", testCode: ""})
+    const [languages, setLanguages] = useState();
+    const [test, setTest] = useState({languageId: 1, statement: "", testCode: ""})
     const [codeError, setCodeError] = useState({isError: false, message: ""})
     const [isSaving, setIsSaving] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState({isError: false, message: ""})
 
     useEffect(() =>{
-        GetLanguajeInfo();
+        GetLanguageInfo();
     },[])
 
-    async function GetLanguajeInfo(){
+    async function GetLanguageInfo(){
         try{
             setIsLoading(true);
-            const languajesResponse = await ApiCOTR.GetLanguajesAsync(auth.getAccessToken());
-            setLanguajes(languajesResponse);
+            const languagesResponse = await ApiCOTR.GetLanguagesAsync(auth.getAccessToken());
+            setLanguages(languagesResponse);
             setIsLoading(false);
         }
         catch(error) {
@@ -78,28 +78,25 @@ export default function CreateExercise(){
                             <h1 className="create-exercise-title">Creación de ejercicios</h1>
                             <form onSubmit={handleSubmit}>
                                 <div className="input-group">
-                                    <label htmlFor="languajes">Selecciona una lenguaje de programación</label>
-                                    <select name="languajes" onChange={e => { 
-                                        setTest({languajeId: e.target.value, statement: test.statement, testCode: test.testCode})
-                                        console.log(test);
-                                    }} value={test.languajeId}>
+                                    <label htmlFor="languages">Selecciona una lenguaje de programación</label>
+                                    <select name="languages" onChange={e =>setTest({languageId: e.target.value, statement: test.statement, testCode: test.testCode})} value={test.languageId}>
                                         {
-                                            languajes.map(ex => (<option key={ex.languajeId} value={ex.languajeId}>{ex.name}</option>))
+                                            languages.map(ex => (<option key={ex.languageId} value={ex.languageId}>{ex.name}</option>))
                                         }
                                     </select>
                                 </div>
                                 <div className="input-group">
                                     <label htmlFor="statement">Enunciado del ejercicio</label>
-                                    <textarea className="create-test-statement" disabled={isSaving} value={test.statement} onChange={e => setTest({languajeId: test.languajeId, statement: e.target.value, testCode: test.testCode})} required/>
+                                    <textarea className="create-test-statement" disabled={isSaving} value={test.statement} onChange={e => setTest({languageId: test.languageId, statement: e.target.value, testCode: test.testCode})} required/>
                                 </div>
                                 <div className="input-group">
                                     <label>Test del ejercicio</label>
                                     <Editor
                                         height="80vh"
                                         theme="vs-dark"
-                                        language={languajes[test.languajeId - 1].name.toLowerCase()}
-                                        value={languajes[test.languajeId - 1].testStart}
-                                        onChange={e => setTest({languajeId: test.languajeId, statement: test.statement, testCode: e})}
+                                        language={languages[test.languageId - 1].name.toLowerCase()}
+                                        value={languages[test.languageId - 1].testStart}
+                                        onChange={e => setTest({languageId: test.languageId, statement: test.statement, testCode: e})}
                                     >
                                     </Editor>
                                 </div>

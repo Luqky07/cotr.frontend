@@ -26,7 +26,7 @@ export default function TryExercise(){
             setIsLoading(true);
             const exercisesResponse = await ApiCOTR.GetExerciseByExerciseIdAsync(auth.getAccessToken(), params.exerciseId);
             setExercise(exercisesResponse);
-            setCode({code: exercisesResponse.languaje.codeStart})
+            setCode({code: exercisesResponse.language.codeStart})
             setIsLoading(false);
         }
         catch(error) {
@@ -84,8 +84,8 @@ export default function TryExercise(){
                             <Editor
                                 height="80vh"
                                 theme="vs-dark"
-                                defaultLanguage={exercise.languaje.name.toLowerCase()}
-                                defaultValue={exercise.languaje.codeStart}
+                                defaultLanguage={exercise.language.name.toLowerCase()}
+                                defaultValue={exercise.language.codeStart}
                                 onChange={e => setCode({code: e})}
                             >
 

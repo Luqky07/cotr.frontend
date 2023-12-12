@@ -3,27 +3,27 @@ import { useAuth } from "../../utils/AuthProvider";
 import { ApiCOTR } from "../../services/ApiCOTR";
 import { useEffect, useState } from "react";
 import ExerciseInfo from "../../components/common/ExerciseInfo/ExerciseInfo";
-import './Languaje.css'
+import './Language.css'
 
-export default function Languaje(){
+export default function Language(){
     const auth = useAuth();
     const params = useParams();
     
-    const [languaje, setLanguaje] = useState();
+    const [language, setLanguage] = useState();
     const [exercises, setExercises] = useState(undefined);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState({isError: false, message: ""})
 
     useEffect(() =>{
-        GetLanguajeInfo();
+        GetLanguageInfo();
     },[])
 
-    async function GetLanguajeInfo(){
+    async function GetLanguageInfo(){
         try{
             setIsLoading(true);
-            const languajeResponse = await ApiCOTR.GetLanguajeInfoByIdAsync(auth.getAccessToken(), params.languajeId);
-            setLanguaje(languajeResponse);
-            const exercisesResponse = await ApiCOTR.GetExercisesByLanguajeIdAsync(auth.getAccessToken(), params.languajeId);
+            const languageResponse = await ApiCOTR.GetLanguageInfoByIdAsync(auth.getAccessToken(), params.languageId);
+            setLanguage(languageResponse);
+            const exercisesResponse = await ApiCOTR.GetExercisesByLanguageIdAsync(auth.getAccessToken(), params.languageId);
             setExercises(exercisesResponse);
             setIsLoading(false);
         }
@@ -53,12 +53,12 @@ export default function Languaje(){
                         </h3>
                     :
                         <>
-                            <h1 className="languaje-title">{languaje.name}</h1>
-                            <p className="languaje-info">{languaje.description}</p>
+                            <h1 className="language-title">{language.name}</h1>
+                            <p className="language-info">{language.description}</p>
                             {
                                 exercises.count > 0 ?
                                     <>
-                                        <h1 className="languaje-title">Ejercicios de {languaje.name}</h1>
+                                        <h1 className="language-title">Ejercicios de {language.name}</h1>
                                         {
                                             exercises.exercises.map(ex => (<ExerciseInfo key={ex.exercise.exerciseId} exerciseData={ex}/>))
                                         }

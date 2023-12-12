@@ -10,7 +10,7 @@ import ThemeProvider from './components/common/Theme/ThemeProvider'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import ChangePasswordRequest from './pages/ChangePasswordRequest/ChangePasswordRequest'
 import Profile from './pages/Profile/Profile'
-import Languaje from './pages/Languaje/Languaje'
+import Language from './pages/Language/Language'
 import NoExist from './pages/NoExist/NoExist'
 import TryExercise from './pages/TryExercise/TryExercise'
 import CreateExercise from './pages/CreateExercise/CreateExercise'
@@ -51,8 +51,8 @@ const router = createBrowserRouter([
         element: <Profile/>
       },
       {
-        path: "languajes/:languajeId",
-        element: <Languaje/>
+        path: "languages/:languageId",
+        element: <Language/>
       },
       {
         path: "exercise",

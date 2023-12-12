@@ -10,7 +10,7 @@ export default function EditExercise(){
     const params = useParams();
 
     const [test, setTest] = useState({statement: "", testCode: ""})
-    const [languaje, setLanguaje] = useState();
+    const [language, setLanguage] = useState();
     const [codeError, setCodeError] = useState({isError: false, message: ""})
     const [isSaving, setIsSaving] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -30,7 +30,7 @@ export default function EditExercise(){
                     testCode: exerciseResponse.test.testCode
                 }
             );
-            setLanguaje(exerciseResponse.languaje.name);
+            setLanguage(exerciseResponse.language.name);
             setIsLoading(false);
         }
         catch(error) {
@@ -94,7 +94,7 @@ export default function EditExercise(){
                                     <Editor
                                         height="80vh"
                                         theme="vs-dark"
-                                        defaultLanguage={languaje.toLowerCase()}
+                                        defaultLanguage={language.toLowerCase()}
                                         value={test.testCode}
                                         onChange={e => setTest({statement: test.statement, testCode: e})}
                                     >

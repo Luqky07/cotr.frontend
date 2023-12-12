@@ -1,16 +1,16 @@
-.languaje-title{
+.language-title{
     text-align: center;
     color: var(--primary-color);
 }
-.languaje-info{
+.language-info{
     color: var(--extra-color);
     text-align: justify;
 }
 @media (max-width: 768px){
-    .languaje-title{
+    .language-title{
         line-height: 1em;
     }
-    .languaje-info{
+    .language-info{
         text-align: left;
     }
 }

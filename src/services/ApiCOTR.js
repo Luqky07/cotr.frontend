@@ -150,9 +150,9 @@ export class ApiCOTR{
         }
     }
 
-    static async GetExercisesByLanguajeIdAsync(accessToken, languajeId){
+    static async GetExercisesByLanguageIdAsync(accessToken, languageId){
         try{
-            const response = await fetch(`${API_COTR_URL}/exercise?languajeId=${languajeId}`, {
+            const response = await fetch(`${API_COTR_URL}/exercise?languageId=${languageId}`, {
                 method: 'GET',
                 headers: {
                     "Authorization": `Bearer ${accessToken}`
@@ -186,9 +186,9 @@ export class ApiCOTR{
         }
     }
 
-    static async GetLanguajeInfoByIdAsync(accessToken, languajeId){
+    static async GetLanguageInfoByIdAsync(accessToken, languageId){
         try{
-            const response = await fetch(`${API_COTR_URL}/languajes/${languajeId}`, {
+            const response = await fetch(`${API_COTR_URL}/languages/${languageId}`, {
                 method: 'GET',
                 headers: {
                     "Authorization": `Bearer ${accessToken}`
@@ -204,9 +204,9 @@ export class ApiCOTR{
         }
     }
 
-    static async GetLanguajesAsync(accessToken){
+    static async GetLanguagesAsync(accessToken){
         try{
-            const response = await fetch(`${API_COTR_URL}/languajes`, {
+            const response = await fetch(`${API_COTR_URL}/languages`, {
                 method: 'GET',
                 headers: {
                     "Authorization": `Bearer ${accessToken}`

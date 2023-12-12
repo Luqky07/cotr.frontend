@@ -5,16 +5,16 @@
     margin: 30px 0 30px 0;
     padding: 30px;
 }
-.link-languaje{
+.link-language{
     min-width: 150px;
     display: flex;
     align-items: center;
 }
-.link-languaje a{
+.link-language a{
     margin-right: 15px;
 }
 
-.link-languaje p{
+.link-language p{
     color: var(--primary-color);
 }
 
