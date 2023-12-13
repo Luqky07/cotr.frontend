@@ -12,10 +12,10 @@ export default function ProfileInfo({userData}){
                 <p>{userData.surname}</p>
             </div>
             {
-                userData.surname != undefined && userData.surname != null && (
+                userData.secondSurname != undefined && userData.secondSurname != null && (
                     <div className="user-info">
                         <h3>Segundo Apellido</h3>
-                        <p>{userData.surname}</p>
+                        <p>{userData.secondSurname}</p>
                     </div>
                 )
             }
