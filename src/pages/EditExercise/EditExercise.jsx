@@ -83,7 +83,7 @@ export default function EditExercise(){
                                     </h3>
                                 )
                             }
-                            <h1 className="create-exercise-title">Creación de ejercicios</h1>
+                            <h1 className="create-exercise-title">Edición de ejercicios</h1>
                             <form onSubmit={handleSubmit}>
                                 <div className="input-group">
                                     <label htmlFor="statement">Enunciado del ejercicio</label>
