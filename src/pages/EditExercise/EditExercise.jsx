@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../utils/AuthProvider";
 import { useEffect, useState } from "react";
 import { ApiCOTR } from "../../services/ApiCOTR";
@@ -8,6 +8,7 @@ import './EditExercise.css';
 export default function EditExercise(){
     const auth = useAuth();
     const params = useParams();
+    const goTo = useNavigate();
 
     const [test, setTest] = useState({statement: "", testCode: ""})
     const [language, setLanguage] = useState();
@@ -44,11 +45,10 @@ export default function EditExercise(){
         try{
             setCodeError({isError: false, message: ""});
             setIsSaving(true);
-            console.log(test)
-            const exerciseResponse = await ApiCOTR.EditExerciseAsync(auth.getAccessToken(), test, params.exerciseId);
-            console.log(exerciseResponse)
+            await ApiCOTR.EditExerciseAsync(auth.getAccessToken(), test, params.exerciseId);
             alert("El ejercicio se ha actualizado exitosamente, para que otros usuarios puedan intentar resolverlo primero tienes que resolverlo tu.");
             setIsSaving(false);
+            goTo(`/exercise/${params.exerciseId}`);
         }
         catch(error) {
             setCodeError({isError: true, message: error.message});
